@@ -527,6 +527,12 @@
       font-weight: 900;
     }
 
+    .icon.icon-emoji {
+      font-size: 1.42rem;
+      line-height: 1;
+      font-weight: normal;
+    }
+
     .category-row {
       display: grid;
       grid-template-columns: repeat(10, minmax(76px, 1fr));
@@ -700,33 +706,6 @@
     .trust-list {
       display: grid;
       gap: 12px;
-    }
-
-    .soft-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .soft-row article {
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: color-mix(in srgb, var(--bg-soft) 88%, transparent);
-      box-shadow: 0 16px 54px rgba(31, 42, 68, 0.06);
-    }
-
-    .soft-row article h3 {
-      margin: 0 0 10px;
-      font-size: 1.05rem;
-      letter-spacing: -0.02em;
-    }
-
-    .soft-row article p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.93rem;
     }
 
     .tab-strip {
@@ -921,7 +900,6 @@
       .grid-4,
       .grid-3,
       .grid-5,
-      .soft-row,
       .tab-strip {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -976,7 +954,6 @@
       .grid-4,
       .grid-3,
       .grid-5,
-      .soft-row,
       .tab-strip {
         grid-template-columns: 1fr;
       }
@@ -1056,7 +1033,7 @@
       <p class="section-intro">Vaya is built for small plans that are nearby, public, and actually about to happen.</p>
       <div class="grid-4">
         <article class="card">
-          <span class="icon">M</span>
+          <span class="icon icon-emoji" aria-hidden="true">🗺️</span>
           <h3>Map-first, not feed-first.</h3>
           <p>You see plans as pins on a real map, filtered by radius and category.</p>
         </article>
@@ -1066,12 +1043,12 @@
           <p>Plans must start within about 36 hours. Nothing six weeks out, nothing stale.</p>
         </article>
         <article class="card">
-          <span class="icon">J</span>
+          <span class="icon icon-emoji" aria-hidden="true">🔒</span>
           <h3>Join first, talk second.</h3>
           <p>Group chat is locked until you RSVP. DMs are locked until two people connect.</p>
         </article>
         <article class="card">
-          <span class="icon">P</span>
+          <span class="icon icon-emoji" aria-hidden="true">🏛️</span>
           <h3>Public meetups only.</h3>
           <p>No private addresses. Cafes, parks, courts, plazas, and places you already know.</p>
         </article>
@@ -1148,28 +1125,23 @@
           <article class="trust-card"><h3>Protect privacy.</h3><p>Don't share someone else's live location, phone number, address, or private messages.</p></article>
         </div>
       </div>
-      <div class="soft-row">
-        <article><h3>Numbers stay private.</h3><p>Phone numbers and addresses are never exposed.</p></article>
-        <article><h3>You can step away.</h3><p>Quietly leave, block, or report any plan or person. Full stop.</p></article>
-        <article><h3>Private safety ratings.</h3><p>After you attend, both sides can leave a private safety rating that informs future RSVPs.</p></article>
-      </div>
     </section>
 
     <section class="section reveal" aria-labelledby="privacy-heading">
       <h2 id="privacy-heading">Privacy stays simple.</h2>
       <div class="grid-3">
         <article class="card">
-          <span class="icon">L</span>
+          <span class="icon icon-emoji" aria-hidden="true">🌐</span>
           <h3>Location stays loose.</h3>
           <p>We use your area to show what's nearby. Never broadcast your live location to other users.</p>
         </article>
         <article class="card">
-          <span class="icon">D</span>
+          <span class="icon icon-emoji" aria-hidden="true">🔐</span>
           <h3>No DMs from strangers.</h3>
           <p>You decide who can message you by accepting connection requests.</p>
         </article>
         <article class="card">
-          <span class="icon">C</span>
+          <span class="icon icon-emoji" aria-hidden="true">🎛️</span>
           <h3>You're in control.</h3>
           <p>Delete your account in one tap. Push notifications are capped; we never blast.</p>
         </article>
