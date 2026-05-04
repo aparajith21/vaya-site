@@ -766,63 +766,8 @@
       font-weight: normal;
     }
 
-    input,
-    textarea {
-      min-height: 48px;
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--bg-soft);
-      color: var(--text);
-      padding: 0 14px;
-      outline: none;
-    }
-
-    textarea {
-      min-height: 130px;
-      padding-top: 12px;
-      resize: vertical;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: var(--accent);
-    }
-
-    .hint-text {
-      min-height: 22px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    #contact-note:empty {
-      display: none;
-      min-height: 0;
-    }
-
     .hero-hint {
       margin-top: 14px;
-    }
-    .contact-card {
-      display: grid;
-      grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
-      gap: 28px;
-      align-items: start;
-      padding: 30px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: color-mix(in srgb, var(--bg-soft) 88%, transparent);
-      box-shadow: 0 16px 54px rgba(31, 42, 68, 0.06);
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 10px;
-    }
-
-    .contact-mailto-fallback a#contact-mailto-link {
-      font-weight: 750;
     }
 
     .faq {
@@ -932,8 +877,7 @@
 
     @media (max-width: 960px) {
       .hero,
-      .trust,
-      .contact-card {
+      .trust {
         grid-template-columns: 1fr;
       }
 
@@ -1041,7 +985,7 @@
     <nav aria-label="Primary navigation">
       <a href="#how">How it works</a>
       <a href="#safety">Safety</a>
-      <a href="#contact">Contact</a>
+      <a href="/support.html">Support</a>
       <a href="#faq">FAQ</a>
     </nav>
   </header>
@@ -1232,32 +1176,6 @@
         </details>
       </div>
     </section>
-
-    <section class="section reveal" id="contact" aria-labelledby="contact-heading">
-      <div class="contact-card">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2 id="contact-heading">Send us a note.</h2>
-          <p class="section-intro">Questions, support, launch neighborhoods, or feedback. Email us at <a href="mailto:hello@vaya.today">hello@vaya.today</a>.</p>
-        </div>
-        <form class="contact-form" id="contact-form">
-          <label>
-            <span>Your email</span>
-            <input required type="email" name="email" autocomplete="email" placeholder="you@example.com" />
-          </label>
-          <label>
-            <span>Message</span>
-            <textarea required name="message" placeholder="How can we help?"></textarea>
-          </label>
-          <button class="button primary" type="submit" id="contact-submit">Send message</button>
-          <p class="hint-text" id="contact-note"></p>
-          <p class="hint-text contact-mailto-fallback" id="contact-mailto-fallback" hidden>
-            If nothing opened, <a href="#" id="contact-mailto-link">tap here to open email</a>
-            or write to <a href="mailto:hello@vaya.today">hello@vaya.today</a>.
-          </p>
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -1268,7 +1186,6 @@
       <a href="https://www.vaya.today/privacy.html">Privacy policy</a>
       <a href="https://www.vaya.today/terms.html">Terms of service</a>
       <button type="button" id="rules-button">Community rules</button>
-      <a href="#contact">Contact</a>
       <a href="/support.html">Support</a>
     </div>
     <small>&copy; Vaya</small>
@@ -1301,53 +1218,6 @@
     const rulesButton = document.querySelector("#rules-button");
     const rulesModal = document.querySelector("#rules-modal");
     const rulesClose = document.querySelector("#rules-close");
-    const contactForm = document.querySelector("#contact-form");
-    const contactNote = document.querySelector("#contact-note");
-    const contactSubmit = document.querySelector("#contact-submit");
-    const contactMailtoFallback = document.querySelector("#contact-mailto-fallback");
-    const contactMailtoLink = document.querySelector("#contact-mailto-link");
-
-    /**
-     * Web3Forms delivers submissions to hello@vaya.today.
-     * Free plan: no domain whitelist UI — the form works from your sites without listing URLs.
-     * Pro plan optional “Restrict to Domain”: form settings accept comma-separated hostnames (no https://).
-     * Docs: https://docs.web3forms.com/getting-started/pro-features/restrict-to-domain.md
-     */
-    const WEB3FORMS_ACCESS_KEY = "a309ca71-8d3b-49d6-a1d5-3f18a06a4553";
-
-    function syncContactDeliveryHint() {
-      if (!contactNote) return;
-      if (WEB3FORMS_ACCESS_KEY) {
-        contactNote.textContent = "";
-        if (contactMailtoFallback) contactMailtoFallback.hidden = true;
-      } else {
-        contactNote.textContent =
-          "We'll try to open your mail app with your note filled in. You can always reach us at hello@vaya.today.";
-      }
-    }
-    syncContactDeliveryHint();
-
-    /** Build mailto URL; encode query parts only (mailbox stays readable). */
-    function buildMailtoHref(mailbox, subject, body) {
-      return (
-        "mailto:" +
-        mailbox +
-        "?subject=" +
-        encodeURIComponent(subject) +
-        "&body=" +
-        encodeURIComponent(body)
-      );
-    }
-
-    /** Synthetic link click survives some browsers where assigning location skips the handler chain. */
-    function openMailto(href) {
-      const link = document.createElement("a");
-      link.href = href;
-      link.rel = "noopener noreferrer";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
 
     rulesButton?.addEventListener("click", () => {
       if (typeof rulesModal.showModal === "function") {
@@ -1356,75 +1226,6 @@
     });
 
     rulesClose?.addEventListener("click", () => rulesModal.close());
-
-    contactForm?.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const data = new FormData(contactForm);
-      const email = String(data.get("email") || "").trim();
-      const message = String(data.get("message") || "").trim();
-
-      if (!email || !message) {
-        contactNote.textContent = "Please enter both your email and a message.";
-        if (contactMailtoFallback) contactMailtoFallback.hidden = true;
-        return;
-      }
-
-      if (WEB3FORMS_ACCESS_KEY) {
-        if (contactSubmit) contactSubmit.disabled = true;
-        try {
-          const res = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({
-              access_key: WEB3FORMS_ACCESS_KEY,
-              subject: "Vaya contact (" + email + ")",
-              from_name: "Vaya website",
-              email,
-              message,
-            }),
-          });
-          const result = await res.json().catch(() => ({}));
-          if (result.success) {
-            contactNote.textContent = "Thank you, your message has been sent.";
-            contactForm.reset();
-            if (contactMailtoFallback) contactMailtoFallback.hidden = true;
-          } else {
-            contactNote.textContent =
-              (result.message &&
-                String(result.message).slice(0, 240)) ||
-              "Couldn't send right now. Email hello@vaya.today directly.";
-          }
-        } catch {
-          contactNote.textContent =
-            "Couldn't send right now. Try again or email hello@vaya.today.";
-        }
-        if (contactSubmit) contactSubmit.disabled = false;
-        return;
-      }
-
-      const subject = "Vaya contact (" + email + ")";
-      let body = message + "\n\n—\nFrom: " + email;
-      const maxChars = 2400;
-      if (body.length > maxChars) {
-        body =
-          body.slice(0, maxChars).trimEnd() +
-          "\n\n[…truncated — email apps limit mailto link length.]";
-      }
-
-      const href = buildMailtoHref("hello@vaya.today", subject, body);
-
-      contactNote.textContent = "Your email app should open with the message ready to send.";
-      if (contactMailtoLink) {
-        contactMailtoLink.href = href;
-      }
-      if (contactMailtoFallback) contactMailtoFallback.hidden = false;
-
-      openMailto(href);
-    });
   </script>
 </body>
 </html>
