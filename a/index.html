@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plan invite · Vaya</title>
+  <meta name="description" content="Open this invite in the Vaya app to see the plan and join." />
+  <meta name="theme-color" content="#ff5a3d" />
+  <meta property="og:title" content="Plan invite · Vaya" />
+  <meta property="og:description" content="Open in Vaya to see this plan." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --accent: #ff5a3d;
+      --accent-2: #ff7a45;
+      --bg: #fff8f6;
+      --text: #101624;
+      --muted: #667085;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(120% 80% at 50% 0%, #ffece6 0%, var(--bg) 45%, #fff 100%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+    .card {
+      max-width: 420px;
+      width: 100%;
+      padding: 36px 28px;
+      border-radius: 28px;
+      background: #fff;
+      border: 1px solid rgba(16, 22, 36, 0.08);
+      box-shadow: 0 24px 64px rgba(31, 42, 68, 0.08);
+      text-align: center;
+    }
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.35rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.45;
+    }
+    .buttons {
+      display: grid;
+      gap: 10px;
+    }
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    a.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      border: 1px solid transparent;
+    }
+    a.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(16, 22, 36, 0.12);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">Vaya</div>
+    <h1 id="headline">Open this plan in Vaya</h1>
+    <p id="lede">If you have the app installed, use the button below. Otherwise get Vaya first, then open this link again.</p>
+    <div class="buttons">
+      <a class="button primary" id="open-app" href="#">Open in Vaya</a>
+      <a class="button secondary" href="https://apps.apple.com/us/app/vaya-now/id6763957598" target="_blank" rel="noopener noreferrer">Get Vaya on the App Store</a>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var m = location.pathname.match(/^\/a\/([^/]+)\/?$/);
+      var id = m ? m[1] : null;
+      var openBtn = document.getElementById("open-app");
+
+      if (!id || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) {
+        document.getElementById("headline").textContent = "Invite link";
+        document.getElementById("lede").textContent =
+          "This page is for shared plans from Vaya. Ask your host for a fresh link.";
+        openBtn.href = "https://apps.apple.com/us/app/vaya-now/id6763957598";
+        openBtn.textContent = "Get Vaya";
+        openBtn.classList.remove("primary");
+        openBtn.classList.add("secondary");
+        openBtn.target = "_blank";
+        openBtn.rel = "noopener noreferrer";
+        document.querySelector("a.secondary").hidden = true;
+        return;
+      }
+
+      openBtn.href = "vaya://activity/" + encodeURIComponent(id);
+    })();
+  </script>
+</body>
+</html>
