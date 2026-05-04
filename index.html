@@ -491,8 +491,7 @@
     .card,
     .step,
     .trust-card,
-    .faq details,
-    .waitlist {
+    .faq details {
       border: 1px solid var(--line);
       border-radius: 28px;
       background: color-mix(in srgb, var(--bg-soft) 88%, transparent);
@@ -751,25 +750,6 @@
       font-weight: 900;
     }
 
-    .waitlist {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.75fr);
-      gap: 28px;
-      align-items: center;
-      padding: 30px;
-    }
-
-    .waitlist-form {
-      display: grid;
-      gap: 10px;
-    }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 120px;
-      gap: 10px;
-    }
-
     input,
     textarea {
       min-height: 48px;
@@ -793,13 +773,16 @@
       border-color: var(--accent);
     }
 
-    .form-note {
+    .hint-text {
       min-height: 22px;
       margin: 0;
       color: var(--muted);
       font-size: 0.9rem;
     }
 
+    .hero-hint {
+      margin-top: 14px;
+    }
     .contact-card {
       display: grid;
       grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
@@ -925,8 +908,7 @@
     @media (max-width: 960px) {
       .hero,
       .trust,
-      .contact-card,
-      .waitlist {
+      .contact-card {
         grid-template-columns: 1fr;
       }
 
@@ -997,10 +979,6 @@
         grid-template-columns: 1fr;
       }
 
-      .field-row {
-        grid-template-columns: 1fr;
-      }
-
       .category-row {
         grid-template-columns: repeat(10, 86px);
       }
@@ -1040,7 +1018,6 @@
     <nav aria-label="Primary navigation">
       <a href="#how">How it works</a>
       <a href="#safety">Safety</a>
-      <a href="#waitlist">Waitlist</a>
       <a href="#contact">Contact</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -1057,7 +1034,6 @@
           <a class="button secondary" href="#how">See how it works</a>
         </div>
         <p class="reassurance">Public meetup spots only. No phone numbers shared. You can leave any plan with one tap.</p>
-        <p class="form-note"><a href="#waitlist">Join the waitlist</a> if Vaya is not in your neighborhood yet.</p>
       </div>
 
       <div class="phone-stack" aria-label="Vaya app preview">
@@ -1210,30 +1186,6 @@
       </div>
     </section>
 
-    <section class="section reveal" id="waitlist" aria-labelledby="waitlist-heading">
-      <div class="waitlist">
-        <div>
-          <p class="eyebrow">Rolling out gradually</p>
-          <h2 id="waitlist-heading">Neighborhood by neighborhood.</h2>
-          <p class="section-intro">Vaya is rolling out neighborhood by neighborhood. Want it where you live next? Tell us your ZIP.</p>
-        </div>
-        <form class="waitlist-form" id="waitlist-form">
-          <label>
-            <span>Email</span>
-            <input required type="email" name="email" autocomplete="email" placeholder="you@example.com" />
-          </label>
-          <div class="field-row">
-            <label>
-              <span>ZIP</span>
-              <input required type="text" name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" placeholder="94110" />
-            </label>
-            <button class="button primary" type="submit">Join</button>
-          </div>
-          <p class="form-note" id="form-note">Your ZIP helps us prioritize where Vaya opens next.</p>
-        </form>
-      </div>
-    </section>
-
     <section class="section reveal" id="faq" aria-labelledby="faq-heading">
       <h2 id="faq-heading">FAQ.</h2>
       <div class="faq">
@@ -1281,7 +1233,7 @@
             <textarea required name="message" placeholder="How can we help?"></textarea>
           </label>
           <button class="button primary" type="submit">Open email</button>
-          <p class="form-note" id="contact-note">This opens your mail app so you can send the message directly.</p>
+          <p class="hint-text" id="contact-note">This opens your mail app so you can send the message directly.</p>
         </form>
       </div>
     </section>
@@ -1325,25 +1277,11 @@
   </dialog>
 
   <script>
-    const form = document.querySelector("#waitlist-form");
-    const note = document.querySelector("#form-note");
     const rulesButton = document.querySelector("#rules-button");
     const rulesModal = document.querySelector("#rules-modal");
     const rulesClose = document.querySelector("#rules-close");
     const contactForm = document.querySelector("#contact-form");
     const contactNote = document.querySelector("#contact-note");
-
-    form?.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const email = String(data.get("email") || "").trim();
-      const zip = String(data.get("zip") || "").trim();
-
-      if (!email || !zip) return;
-
-      note.textContent = "Thanks. We saved your interest for " + zip + ".";
-      form.reset();
-    });
 
     rulesButton?.addEventListener("click", () => {
       if (typeof rulesModal.showModal === "function") {
