@@ -1,0 +1,5 @@
+# Local-only App Store tooling and generated previews (keep out of repo)
+/assets/appstore/
+/scripts/
+
+.DS_Store
