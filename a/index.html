@@ -38,12 +38,28 @@
       box-shadow: 0 24px 64px rgba(31, 42, 68, 0.08);
       text-align: center;
     }
-    .logo {
+    .brand-row {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .brand-mark {
+      display: block;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(255, 90, 61, 0.26);
+      object-fit: cover;
+    }
+
+    .brand-name {
       font-weight: 800;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
       font-size: 1.35rem;
-      color: var(--accent);
-      margin-bottom: 10px;
+      color: var(--text);
     }
     h1 {
       margin: 0 0 12px;
@@ -86,7 +102,10 @@
 </head>
 <body>
   <main class="card">
-    <div class="logo">Vaya</div>
+    <div class="brand-row">
+      <img class="brand-mark" src="/assets/vaya-logo.png" alt="" width="34" height="34" decoding="async" />
+      <span class="brand-name">Vaya</span>
+    </div>
     <h1 id="headline">Open this plan in Vaya</h1>
     <p id="lede">If you have the app installed, use the button below. Otherwise get Vaya first, then open this link again.</p>
     <div class="buttons">
