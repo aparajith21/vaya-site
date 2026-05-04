@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appID": "AAAAAAAAAA.com.vaya-today.app",
+        "appID": "845Q8PN6W4.com.vaya-today.app",
         "paths": [
           "/a/*",
           "/auth-callback*"
