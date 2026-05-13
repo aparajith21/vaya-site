@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vaya | Join plans with people nearby.</title>
-  <meta name="description" content="Join plans with people nearby. Open the map, tap to join, then chat unlocks." />
+  <title>Vaya | Meet people in your life.</title>
+  <meta name="description" content="Meet people in your life—not your existing friends. Your mutuals: the neighbours nearby you don't know yet." />
   <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
-  <meta property="og:title" content="Vaya | Join plans with people nearby." />
-  <meta property="og:description" content="Join plans with people nearby. Map-first. Tap to join, then chat unlocks." />
+  <meta property="og:title" content="Vaya | Meet people in your life." />
+  <meta property="og:description" content="Not your existing friends. Your mutuals—the neighbours on your block you haven't met yet." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.vaya.today/" />
   <meta property="og:image" content="https://www.vaya.today/assets/site/hero-map.png" />
-  <meta property="og:image:alt" content="Vaya map showing nearby plans as pins." />
+  <meta property="og:image:alt" content="Vaya map with pins for small plans happening nearby." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.vaya.today/assets/site/hero-map.png" />
   <style>
@@ -135,6 +135,10 @@
       padding: 72px 0;
     }
 
+    #examples {
+      padding-top: 56px;
+    }
+
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
@@ -216,9 +220,20 @@
 
     .lede {
       max-width: 640px;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
       color: var(--muted);
       font-size: clamp(1.08rem, 2vw, 1.35rem);
+    }
+
+    .lede.hero-intro-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0.16em;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-intro-lines .hero-intro-mid {
+      font-weight: 780;
     }
 
     .section-intro {
@@ -961,7 +976,7 @@
       "url": "https://www.vaya.today/",
       "downloadUrl": "https://apps.apple.com/us/app/vaya-now/id6763957598",
       "sameAs": ["https://apps.apple.com/us/app/vaya-now/id6763957598"],
-      "description": "Join plans with people nearby. Map-first. Tap to join, then chat unlocks.",
+      "description": "Meet people in your life: not your existing friends—your mutuals, the neighbours nearby you don't know yet.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -993,13 +1008,17 @@
   <main>
     <section class="hero reveal">
       <div>
-        <h1 class="hero-title"><span class="hero-title-row">Join plans</span><span class="hero-title-row">with people nearby.</span></h1>
-        <p class="lede">Open the map. Find nearby plans starting soon. Tap to join. Chat unlocks after you do.</p>
+        <h1 class="hero-title"><span class="hero-title-row">Meet people</span><span class="hero-title-row">in your life.</span></h1>
+        <p class="lede hero-intro-lines">
+          <span>No, not your existing friends.</span>
+          <span class="hero-intro-mid">Your mutuals.</span>
+          <span>The dozens of neighbours you don't know.</span>
+        </p>
         <div class="cta-row">
-          <a class="button primary" href="https://apps.apple.com/us/app/vaya-now/id6763957598" target="_blank" rel="noopener noreferrer" aria-label="Get Vaya Now on the App Store">Get Vaya Now</a>
-          <a class="button secondary" href="#how">See how it works</a>
+          <a class="button primary" href="https://apps.apple.com/us/app/vaya-now/id6763957598" target="_blank" rel="noopener noreferrer" aria-label="Vaya on the App Store">Vaya on the App Store</a>
+          <a class="button secondary" href="#how">How it works</a>
         </div>
-        <p class="reassurance">Public meetup spots only. No phone numbers shared. You can leave any plan with one tap.</p>
+        <p class="reassurance">Public meetup spots only. No phone numbers in profiles. Leave any plan in one tap.</p>
       </div>
 
       <div class="phone-stack" aria-label="Vaya app preview">
@@ -1016,9 +1035,20 @@
       </div>
     </section>
 
+    <section class="section reveal" id="examples" aria-labelledby="examples-heading">
+      <h2 id="examples-heading">Kinds of plans nearby</h2>
+      <div class="carousel" aria-label="Example plans">
+        <article class="example-card g-pink"><strong>Coffee after work</strong><p>Someone nearby names a cafe and a time.</p></article>
+        <article class="example-card g-green"><strong>Easy runs</strong><p>Same loop, same pace, public start point.</p></article>
+        <article class="example-card g-indigo"><strong>Tiny game nights</strong><p>See who's in before you join.</p></article>
+        <article class="example-card g-orange"><strong>Sunset walks</strong><p>Low stakes; the map keeps it local.</p></article>
+        <article class="example-card g-cyan"><strong>Food nearby</strong><p>Share a table without swapping numbers first.</p></article>
+      </div>
+    </section>
+
     <section class="section reveal" aria-labelledby="pillars-heading">
       <h2 id="pillars-heading">What makes Vaya different.</h2>
-      <p class="section-intro">Vaya is built for small plans that are nearby, public, and actually about to happen.</p>
+      <p class="section-intro">Small, public gatherings near you—nothing staged, nothing six weeks out.</p>
       <div class="grid-4">
         <article class="card">
           <span class="icon icon-emoji" aria-hidden="true">🗺️</span>
@@ -1085,17 +1115,6 @@
           </div>
           <div class="mini-phone"><div class="mini-screen screenshot-screen"><img class="app-screenshot" src="assets/site/how-plans.png" alt="Plans tab showing upcoming RSVPs." /></div></div>
         </article>
-      </div>
-    </section>
-
-    <section class="section reveal" aria-labelledby="examples-heading">
-      <h2 id="examples-heading">A few real examples.</h2>
-      <div class="carousel" aria-label="Example plans">
-        <article class="example-card g-pink"><strong>Coffee after work</strong><p>Meet a few nearby people first.</p></article>
-        <article class="example-card g-green"><strong>Easy runs</strong><p>Low-pressure plans with public meetup spots.</p></article>
-        <article class="example-card g-indigo"><strong>Tiny game nights</strong><p>See who is joining before you tap in.</p></article>
-        <article class="example-card g-orange"><strong>Sunset walks</strong><p>Use your location or start in San Francisco.</p></article>
-        <article class="example-card g-cyan"><strong>Food nearby</strong><p>Join fast, then create your account.</p></article>
       </div>
     </section>
 
@@ -1180,7 +1199,7 @@
 
   <footer class="site-footer">
     <div class="footer-cta">
-      <a class="button primary" href="https://apps.apple.com/us/app/vaya-now/id6763957598" target="_blank" rel="noopener noreferrer">Get Vaya Now</a>
+      <a class="button primary" href="https://apps.apple.com/us/app/vaya-now/id6763957598" target="_blank" rel="noopener noreferrer">Vaya on the App Store</a>
     </div>
     <div class="footer-links">
       <a href="https://www.vaya.today/privacy.html">Privacy policy</a>
